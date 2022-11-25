@@ -30,3 +30,7 @@ export const registerUser = input => {
         return err
     })
 }
+
+export const logoutUser = () => {
+    return axios.get(`${backend}/logout`).then(response => response.data).catch(e=>e)
+}
