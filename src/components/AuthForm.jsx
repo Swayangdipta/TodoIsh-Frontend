@@ -3,6 +3,8 @@ import { loginUser, registerUser } from '../utils/AuthApiCalls'
 import {toast} from 'react-toastify'
 import {Navigate} from 'react-router-dom'
 import { authenticate } from '../utils/LocalStorage'
+import {AiOutlineLoading3Quarters} from 'react-icons/ai'
+
 
 const AuthForm = () => {
 
@@ -14,14 +16,14 @@ const AuthForm = () => {
         cPass: ''
     })
 
+    const [isLoading,setIsLoading] = useState(false)
+
     const [success,setSuccess] = useState(false)
 
     const {name,password,email,cPass} = inputs
 
     const handleChange = (field,e) => {
-        console.log(field);
         setInputs({...inputs,[field]: e.target.value})
-        console.log(inputs);
     }
 
     const changeForm = (newType) => {
@@ -46,7 +48,7 @@ const AuthForm = () => {
             
             <p className="ml-[5px] mt-[10px]">Already have an account? <span className='text-indigo-900 font-[600] cursor-pointer' onClick={e=>changeForm("login")}>Login.</span></p>
 
-            <button className='w-[340px] h-[40px] mt-[10px] mx-auto bg-blue-700 rounded-md text-zinc-100 text-[22px]' type="submit" onClick={register}>Register</button>
+            <button className='w-[340px] h-[40px] mt-[10px] mx-auto bg-blue-700 rounded-md text-zinc-100 text-[22px]' type="submit" onClick={register}>{isLoading ? (<AiOutlineLoading3Quarters className='animate-spin' />) : ("Register")}</button>
         </form>
     )
 
@@ -62,37 +64,47 @@ const AuthForm = () => {
             
             <p className="ml-[5px] mt-[10px]">Don't have an account? <span className='text-indigo-900 font-[600] cursor-pointer' onClick={e=>changeForm("register")}>Register.</span></p>
 
-            <button className='w-[340px] h-[40px] mt-[10px] mx-auto bg-blue-700 rounded-md text-zinc-100 text-[22px]' type="submit" onClick={login}>Login</button>
+            <button className='w-[340px] h-[40px] mt-[10px] mx-auto bg-blue-700 rounded-md text-zinc-100 text-[22px] flex items-center justify-center' type="submit" onClick={login}>{
+                isLoading ? (<AiOutlineLoading3Quarters className='animate-spin' />) : ("Login")
+            }</button>
         </form>
     )
 
     const login = e => {
         e.preventDefault()
+        setIsLoading(true)
         loginUser({email: email,password: password}).then(data=>{
             if(!data?.response?.data?.error){
                 if(authenticate(data)){
                     setSuccess(true)
+                    setIsLoading(false)
                     return toast.success("Login success",{theme: "colored"})
                 }else{
+                    setIsLoading(false)
                     return toast.error("Login faild try again!",{theme: "colored"})
                 }
             }else{
+                setIsLoading(false)
                 return toast.error(data.response.data.error,{theme: "colored"})
             }
         }).catch(err => {
+            setIsLoading(false)
             return toast.error(err,{theme: "colored"})
         })
     }
     const register = e => {
         e.preventDefault()
+        setIsLoading(true)
         registerUser({name,email,password}).then(data=>{
             if(!data?.response?.data?.error){
+                setIsLoading(false)
                 toast.success("Successfully registered. Login Now.",{theme: 'colored'})
                 return setType("login")
             }
-
+            setIsLoading(false)
             return toast.error(data.response.data.error,{theme: 'colored'})
         }).catch(err=>{
+            setIsLoading(false)
             return toast.error(err,{theme: 'colored'})
         })
     }
