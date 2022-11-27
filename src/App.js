@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useState } from 'react';
 import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,17 +7,22 @@ import Home from './components/Home';
 import {TodoProvider} from './context/TodoContext'
 
 function App() {
+  const [darkToggle,setDarkToggle] = useState(false)
+  
   return (
-    <div className="App w-[100vw] min-h-[100vh] font-['poppins']">
-      <ToastContainer />
-      <TodoProvider>
-      <Router>
-        <Routes>
-          <Route path='/' element={<AuthSection />} />
-          <Route path='/home' element={<Home />} />
-        </Routes>
-      </Router>
-      </TodoProvider>
+    <div className={`App w-[100vw] min-h-[100vh] font-['poppins'] ${darkToggle && 'dark'}`}>
+      <div className='w-[100vw] min-h-[100vh] dark:bg-zinc-800'>
+        <ToastContainer />
+        <TodoProvider>
+        <Router>
+          <Routes>
+            <Route path='/' element={<AuthSection darkToggle={darkToggle} setDarkToggle={setDarkToggle} />} />
+            <Route path='/home' element={<Home darkToggle={darkToggle} setDarkToggle={setDarkToggle} />} />
+          </Routes>
+        </Router>
+        </TodoProvider>        
+      </div>
+
     </div>
   );
 }

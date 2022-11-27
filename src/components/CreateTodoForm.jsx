@@ -68,7 +68,7 @@ const CreateTodoForm = () => {
         })
     }
   return (
-    <div className='w-[80vw] h-[200px] bg-purple-400 rounded-md mx-auto mt-[30px]'>
+    <div className='w-[80vw] h-[200px] dark:bg-zinc-900 bg-purple-400 rounded-md mx-auto mt-[30px]'>
         <form className='w-[100%] flex justify-center gap-[20px]'>
             <div className="formLeft flex flex-col w-[70%] mt-[20px]">
                 <input value={title} onChange={e=>handleChange("title",e)} type="text" placeholder='Type your todo here...' className='outline-none rounded-md indent-[10px] h-[30px]' />

@@ -4,13 +4,13 @@ import { isAuthenticated } from '../utils/LocalStorage'
 import AuthForm from './AuthForm'
 import Header from './Header'
 
-const AuthSection = () => {
+const AuthSection = ({darkToggle,setDarkToggle=f=>f}) => {
 
     const {user} = isAuthenticated()
   return (
     <>
         {user && (<Navigate to={"/home"} />)}
-        <Header location='auth' />
+        <Header location='auth' darkToggle={darkToggle} setDarkToggle={setDarkToggle} />
         <AuthForm />
     </>
   )

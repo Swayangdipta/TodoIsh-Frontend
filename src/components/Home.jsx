@@ -8,7 +8,7 @@ import {toast} from 'react-toastify'
 import TodoContainer from './TodoContainer'
 import { Navigate } from 'react-router-dom'
 
-const Home = () => {
+const Home = ({darkToggle,setDarkToggle=f=>f}) => {
     const [todos,setTodos] = useContext(TodoContext)
     const [isLoading,setIsLoading] = useState(false)
     const {user,token} = isAuthenticated()
@@ -34,7 +34,7 @@ const Home = () => {
         {
             !token && (<Navigate to={"/"} />)
         }
-        <Header />
+        <Header darkToggle={darkToggle} setDarkToggle={setDarkToggle} />
         <CreateTodoForm />
         <TodoContainer />
     </>
