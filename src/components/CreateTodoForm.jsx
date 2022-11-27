@@ -23,11 +23,23 @@ const CreateTodoForm = () => {
 
     const addTask = e => {
         e.preventDefault()
+        // let tempTask = {
+        //     title: task,
+        //     isCompleted: false
+        // }
+        if(task === ''){
+            toast.error("Cannot add empty task!",{theme: "colored"})
+            return false
+        }
         setInputs({...inputs,tasks: [...tasks,task],task: ''})
     }
 
     const addTodo = e => {
         e.preventDefault()
+        if(title.length === 0){
+            toast.error("Todo title can not be empty!",{theme: 'colored'})
+            return false
+        }
         setIsLoading(true)
         createTodo({title,tasks},user._id,token).then(data=>{
             if(!data?.response?.data?.error && data?.name !== "AxiosError"){
@@ -73,7 +85,7 @@ const CreateTodoForm = () => {
         <div className="taskWrapper mt-[20px] h-[80px] overflow-scroll overflow-x-hidden">
             {
                 tasks.map((task,index)=>(
-                    <div key={index} className="task mx-auto mt-[5px] w-[80%] h-[30px] bg-purple-600 rounded-md flex items-center indent-[10px] text-white">{task}</div>
+                    <div key={index} className="task mx-auto mt-[5px] w-[80%] h-max p-[5px] bg-purple-600 rounded-md flex items-center text-white">{task}</div>
                 ))
             }
         </div>

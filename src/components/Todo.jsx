@@ -50,7 +50,7 @@ const Todo = ({todo}) => {
                 <div className='w-[100%] bg-purple-500 relative top-[0px] h-max py-[5px]'>
                     {
                         todo.tasks.map((task,index)=>(
-                            <p className='flex items-center w-[90%] ml-[5px] mb-[5px] h-[30px] bg-purple-700 rounded-md' key={index}>{task}</p>
+                            <p className='flex items-center w-[90%] ml-[5px] indent-[0px] mb-[5px] h-max p-[5px] bg-purple-700 rounded-md' key={index}>{task}</p>
                         ))
                     }
                 </div>
