@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react'
 import {MdExpandMore} from 'react-icons/md'
-import {AiFillDelete} from 'react-icons/ai'
-import { removeTodo } from '../utils/TodoApiCalls'
+import {AiFillDelete,AiTwotoneEdit} from 'react-icons/ai'
+import {FaCheck} from 'react-icons/fa'
+import { editTodo, removeTodo } from '../utils/TodoApiCalls'
 import { isAuthenticated } from '../utils/LocalStorage'
 import { toast } from 'react-toastify'
 import { TodoContext } from '../context/TodoContext'
@@ -30,6 +31,32 @@ const Todo = ({todo}) => {
         })
     }
 
+    const editThisTodo = (type,item) => {
+        if(type === "all"){
+
+        }else{
+            todo.tasks = todo.tasks.filter(t=> t !== item);
+            let newTodos = todos.map(t => {
+                if(t._id === todo._id){
+                    return todo
+                }else{
+                    return t
+                }
+            })
+            setTodos(newTodos)
+
+            editTodo(todo._id,user._id,token,todo).then(response => {
+                if(!response?.response?.data?.error){
+                    toast.success("Task completed.",{theme: "colored"})
+                }else{
+                    toast.error(response?.response?.data?.error,{theme: "colored"})
+                }
+            }).catch(e=>{
+                return toast.error(e,{theme: "colored"})
+            })
+        }
+    }
+
   return (
     <>
     <div className="w-[90%] relative mx-auto min-h-[40px] h-max mt-[10px] dark:bg-stone-900 bg-purple-700 rounded-md indent-[10px] text-white">
@@ -39,6 +66,11 @@ const Todo = ({todo}) => {
                 <div onClick={e=>setIsExpanded(!isExpanded)} className=' flex items-center justify-center w-[30px] h-[30px] rounded-full bg-white'>
                     <MdExpandMore className='text-[36px] cursor-pointer text-black' />
                 </div>
+
+                <div onClick={e=>editThisTodo("all","")} className=' flex items-center justify-center w-[30px] h-[30px] rounded-full bg-emerald-500'>
+                    <AiTwotoneEdit className='text-[20px] cursor-pointer text-black' />
+                </div>
+
                 <div onClick={handleTodoDelete} className=' flex items-center justify-center w-[30px] h-[30px] rounded-md bg-rose-600'>
                     <AiFillDelete className='text-[20px] cursor-pointer text-white' />
                 </div>
@@ -50,7 +82,10 @@ const Todo = ({todo}) => {
                 <div className='w-[100%] dark:bg-stone-800 bg-purple-500 relative top-[0px] h-max py-[5px]'>
                     {
                         todo.tasks.map((task,index)=>(
-                            <p className='flex items-center w-[90%] ml-[5px] indent-[0px] mb-[5px] h-max p-[5px] dark:bg-stone-900 bg-purple-700 rounded-md' key={index}>{task}</p>
+                            <div className='relative flex items-center justify-between gap-[10px] w-[98%] mx-[1%] indent-[0px] mb-[5px] h-max p-[5px] dark:bg-stone-900 bg-purple-700 rounded-md' key={index}>
+                                <p>{task}</p>
+                                <p onClick={e=> editThisTodo("task",task)} className='absolute h-full flex items-center justify-center rounded-r-md cursor-pointer right-0 top-0 w-[30px] bg-emerald-500'><FaCheck /></p>
+                            </div>
                         ))
                     }
                 </div>

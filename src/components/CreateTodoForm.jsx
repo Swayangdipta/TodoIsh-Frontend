@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import {FaPlus} from 'react-icons/fa'
-import {AiOutlineLoading3Quarters} from 'react-icons/ai'
+import {AiOutlineLoading3Quarters,AiOutlineClose} from 'react-icons/ai'
 import { isAuthenticated } from '../utils/LocalStorage'
 import { createTodo, getTodo } from '../utils/TodoApiCalls'
 import {toast} from 'react-toastify'
@@ -67,6 +67,13 @@ const CreateTodoForm = () => {
             return toast.error(err.message,{theme: "colored"})
         })
     }
+
+    const handleTaskRemove = (taskToRemove,e) => {
+        e.preventDefault()
+        setInputs(prev => {
+           return {...prev,tasks: tasks.filter(t => t !== taskToRemove)}
+        })
+    }
   return (
     <div className='w-[80vw] h-[200px] dark:bg-slate-900 bg-purple-400 rounded-md mx-auto mt-[30px]'>
         <form className='w-[100%] flex justify-center gap-[20px]'>
@@ -85,7 +92,10 @@ const CreateTodoForm = () => {
         <div className="taskWrapper mt-[20px] h-[80px] overflow-scroll overflow-x-hidden">
             {
                 tasks.map((task,index)=>(
-                    <div key={index} className="task mx-auto mt-[5px] w-[80%] h-max p-[5px] dark:bg-zinc-700 bg-purple-600 rounded-md flex items-center text-white">{task}</div>
+                    <div key={index} className="task mx-auto mt-[5px] w-[80%] h-max p-[5px] pr-[0px] dark:bg-zinc-700 bg-purple-600 rounded-md flex items-center justify-between gap-[10px] text-white relative">
+                        <p>{task}</p>
+                        <div onClick={e=>handleTaskRemove(task,e)} className='cursor-pointer rounded-r-md hover:bg-rose-800 h-full w-[30px] flex items-center justify-center bg-rose-600 absolute top-0 right-0'><AiOutlineClose /></div>
+                    </div>
                 ))
             }
         </div>

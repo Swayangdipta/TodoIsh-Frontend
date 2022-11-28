@@ -25,3 +25,11 @@ export const removeTodo = (todoId,userId,token) => {
         }
     }).then(response=>response.data).catch(e=>e)
 }
+
+export const editTodo = (todoId,userId,token,data) => {
+    return axios.put(`${backend}/todo/edit/${userId}/${todoId}`,data,{
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then(response=>response.data).catch(e=>e)
+}

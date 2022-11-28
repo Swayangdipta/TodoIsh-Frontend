@@ -32,6 +32,7 @@ const TodoContainer = () => {
             setTodos(prev => [...prev.sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt))])
         }
     },[sortBy])
+    
   return (
     <div className='w-[80vw] min-h-[30vh] h-max mx-auto py-[20px] dark:bg-stone-700 bg-purple-300 mt-[20px] rounded-md'>
         <form className='w-[90%] flex justify-between gap-[10px] mx-[5%] relative top-[0px]'>

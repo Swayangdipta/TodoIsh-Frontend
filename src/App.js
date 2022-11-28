@@ -11,7 +11,7 @@ function App() {
   
   return (
     <div className={`App w-[100vw] min-h-[100vh] font-['poppins'] ${darkToggle && 'dark'}`}>
-      <div className='w-[100vw] min-h-[100vh] dark:bg-slate-800'>
+      <div className='w-[100vw] min-h-[100vh] pb-[30px] dark:bg-slate-800'>
         <ToastContainer />
         <TodoProvider>
         <Router>
