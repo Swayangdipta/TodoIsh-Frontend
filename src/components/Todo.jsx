@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import {MdExpandMore} from 'react-icons/md'
 import {AiFillDelete,AiTwotoneEdit} from 'react-icons/ai'
+import {BiCheckDouble} from 'react-icons/bi'
 import {FaCheck} from 'react-icons/fa'
 import { editTodo, removeTodo } from '../utils/TodoApiCalls'
 import { isAuthenticated } from '../utils/LocalStorage'
@@ -34,6 +35,17 @@ const Todo = ({todo}) => {
     const editThisTodo = (type,item) => {
         if(type === "all"){
 
+        }else if(type === "status"){
+            todo.isCompleted = true
+            let newTodos = todos.map(t => {
+                if(t._id === todo._id){
+                    return todo
+                }else{
+                    return t
+                }
+            })
+            setTodos(newTodos)
+            separatedEditTodo()
         }else{
             todo.tasks = todo.tasks.filter(t=> t !== item);
             let newTodos = todos.map(t => {
@@ -44,28 +56,39 @@ const Todo = ({todo}) => {
                 }
             })
             setTodos(newTodos)
-
-            editTodo(todo._id,user._id,token,todo).then(response => {
-                if(!response?.response?.data?.error){
-                    toast.success("Task completed.",{theme: "colored"})
-                }else{
-                    toast.error(response?.response?.data?.error,{theme: "colored"})
-                }
-            }).catch(e=>{
-                return toast.error(e,{theme: "colored"})
-            })
+            separatedEditTodo()
         }
+    }
+
+    const separatedEditTodo = () => {
+        editTodo(todo._id,user._id,token,todo).then(response => {
+            if(!response?.response?.data?.error){
+                toast.success("Todo updated.",{theme: "colored"})
+            }else{
+                toast.error(response?.response?.data?.error,{theme: "colored"})
+            }
+        }).catch(e=>{
+            return toast.error(e,{theme: "colored"})
+        })
     }
 
   return (
     <>
-    <div className="w-[90%] relative mx-auto min-h-[40px] h-max mt-[10px] dark:bg-stone-900 bg-purple-700 rounded-md indent-[10px] text-white">
+    <div className={`w-[90%] relative mx-auto min-h-[40px] h-max mt-[10px] ${todo?.isCompleted ? ("dark:bg-stone-600 bg-purple-500") : ("dark:bg-stone-900 bg-purple-700")} rounded-md indent-[10px] text-white`}>
         <div className='flex w-[100%] h-[100%] py-[5px] items-center justify-between'>
-            <h3>{todo.title}</h3>
+            <h3 className={`${todo.isCompleted ? ("line-through") : ("")}`}>{todo.title}</h3>
             <div className='flex gap-[20px] mr-[10px]'>
                 <div onClick={e=>setIsExpanded(!isExpanded)} className=' flex items-center justify-center w-[30px] h-[30px] rounded-full bg-white'>
                     <MdExpandMore className='text-[36px] cursor-pointer text-black' />
                 </div>
+
+                {
+                    !todo.isCompleted && (
+                        <div onClick={e=>editThisTodo("status")} className=' flex items-center justify-center w-[30px] h-[30px] rounded-full bg-teal-500'>
+                            <BiCheckDouble className='text-[36px] cursor-pointer text-black' />
+                        </div>         
+                    )
+                }
 
                 <div onClick={e=>editThisTodo("all","")} className=' flex items-center justify-center w-[30px] h-[30px] rounded-full bg-emerald-500'>
                     <AiTwotoneEdit className='text-[20px] cursor-pointer text-black' />
