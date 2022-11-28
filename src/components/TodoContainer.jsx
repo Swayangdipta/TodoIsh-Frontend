@@ -26,7 +26,6 @@ const TodoContainer = () => {
 
 
     useEffect(()=>{
-        console.log(todos);
         if(sortBy === "old"){
             setTodos(prev => [...prev.sort((a,b)=> new Date(a.createdAt) - new Date(b.createdAt))])
         }else{
