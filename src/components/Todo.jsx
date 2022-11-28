@@ -32,7 +32,7 @@ const Todo = ({todo}) => {
 
   return (
     <>
-    <div className="w-[90%] relative mx-auto min-h-[40px] h-max mt-[10px] bg-purple-700 rounded-md indent-[10px] text-white">
+    <div className="w-[90%] relative mx-auto min-h-[40px] h-max mt-[10px] dark:bg-stone-900 bg-purple-700 rounded-md indent-[10px] text-white">
         <div className='flex w-[100%] h-[100%] py-[5px] items-center justify-between'>
             <h3>{todo.title}</h3>
             <div className='flex gap-[20px] mr-[10px]'>
@@ -47,10 +47,10 @@ const Todo = ({todo}) => {
 
         {
             isExpanded && (
-                <div className='w-[100%] bg-purple-500 relative top-[0px] h-max py-[5px]'>
+                <div className='w-[100%] dark:bg-stone-800 bg-purple-500 relative top-[0px] h-max py-[5px]'>
                     {
                         todo.tasks.map((task,index)=>(
-                            <p className='flex items-center w-[90%] ml-[5px] indent-[0px] mb-[5px] h-max p-[5px] bg-purple-700 rounded-md' key={index}>{task}</p>
+                            <p className='flex items-center w-[90%] ml-[5px] indent-[0px] mb-[5px] h-max p-[5px] dark:bg-stone-900 bg-purple-700 rounded-md' key={index}>{task}</p>
                         ))
                     }
                 </div>

@@ -68,16 +68,16 @@ const CreateTodoForm = () => {
         })
     }
   return (
-    <div className='w-[80vw] h-[200px] dark:bg-zinc-900 bg-purple-400 rounded-md mx-auto mt-[30px]'>
+    <div className='w-[80vw] h-[200px] dark:bg-slate-900 bg-purple-400 rounded-md mx-auto mt-[30px]'>
         <form className='w-[100%] flex justify-center gap-[20px]'>
             <div className="formLeft flex flex-col w-[70%] mt-[20px]">
                 <input value={title} onChange={e=>handleChange("title",e)} type="text" placeholder='Type your todo here...' className='outline-none rounded-md indent-[10px] h-[30px]' />
                 <div className='flex w-[100%] gap-[7px]'>
                 <input value={task} onChange={e=>handleChange("task",e)} type="text" placeholder='Type your tasks here...' className='outline-none rounded-md indent-[10px] w-[100%] h-[30px] mt-[10px]'/>                
-                <button className='w-[150px] h-[30px] mt-[10px] flex items-center justify-center bg-lime-400 font-[500] text-[#371458] rounded-md' onClick={addTask}>Add task</button>
+                <button className='w-[150px] h-[30px] mt-[10px] flex items-center justify-center dark:bg-slate-700 dark:text-slate-200 bg-lime-400 font-[500] text-[#371458] rounded-md' onClick={addTask}>Add task</button>
                 </div>
             </div>
-            <button onClick={addTodo} className='mt-[20px] w-[70px] h-[70px] bg-amber-300 text-purple-700 rounded-md shadow-lg hover:shadow-none flex items-center justify-center text-[30px]'>{
+            <button onClick={addTodo} className='mt-[20px] w-[70px] h-[70px] dark:bg-black dark:text-white bg-amber-300 text-purple-700 rounded-md shadow-lg hover:shadow-none flex items-center justify-center text-[30px]'>{
                 isLoading ? (<AiOutlineLoading3Quarters className='animate-spin' />) : (<FaPlus />)
             }</button>
         </form>
@@ -85,7 +85,7 @@ const CreateTodoForm = () => {
         <div className="taskWrapper mt-[20px] h-[80px] overflow-scroll overflow-x-hidden">
             {
                 tasks.map((task,index)=>(
-                    <div key={index} className="task mx-auto mt-[5px] w-[80%] h-max p-[5px] bg-purple-600 rounded-md flex items-center text-white">{task}</div>
+                    <div key={index} className="task mx-auto mt-[5px] w-[80%] h-max p-[5px] dark:bg-zinc-700 bg-purple-600 rounded-md flex items-center text-white">{task}</div>
                 ))
             }
         </div>

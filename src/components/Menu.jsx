@@ -19,7 +19,7 @@ const Menu = ({location="home"}) => {
   }
 
   return (
-    <div className='absolute rounded-lg top-[80px] right-[30px] w-[300px] h-max pb-[20px] max-h-[200px] bg-purple-500'>
+    <div className='absolute rounded-lg top-[80px] right-[30px] w-[300px] h-max pb-[20px] max-h-[200px] dark:bg-slate-700 bg-purple-500'>
       {
         isRedirect && (<Navigate to={"/"} />)
       }
