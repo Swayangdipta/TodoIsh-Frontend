@@ -24,7 +24,7 @@ const Header = ({location="home",darkToggle,setDarkToggle=f=>f}) => {
         </div>
 
         {
-            isMenuOpen && (<Menu />)
+            isMenuOpen && (<Menu location={location} />)
         }
     </div>
   )

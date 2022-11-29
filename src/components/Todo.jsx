@@ -165,6 +165,8 @@ const Todo = ({todo}) => {
                             </div>
                         ))
                     }
+
+                    <h2 className='mx-[1%] py-[5px] font-[600] dark:font-[500] text-teal-800 dark:text-teal-400'>{todo.createdAt.substring(0,10)} / {todo.createdAt.substring(11,16)}</h2>
                 </div>
             )
         }

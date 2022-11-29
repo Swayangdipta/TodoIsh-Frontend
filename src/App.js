@@ -3,7 +3,9 @@ import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import AuthSection from './components/AuthSection';
+import Footer from './components/Footer';
 import Home from './components/Home';
+import Profile from './components/Profile';
 import {TodoProvider} from './context/TodoContext'
 
 function App() {
@@ -18,11 +20,12 @@ function App() {
           <Routes>
             <Route path='/' element={<AuthSection darkToggle={darkToggle} setDarkToggle={setDarkToggle} />} />
             <Route path='/home' element={<Home darkToggle={darkToggle} setDarkToggle={setDarkToggle} />} />
+            <Route path='/profile' element={<Profile darkToggle={darkToggle} setDarkToggle={setDarkToggle} />} />
           </Routes>
         </Router>
         </TodoProvider>        
       </div>
-
+      <Footer />
     </div>
   );
 }
