@@ -31,40 +31,40 @@ const AuthForm = () => {
     }
 
     const registrationForm = () => (
-        <form className="w-[350px] h-max pb-[20px] dark:bg-stone-900 bg-purple-500 rounded-md flex flex-col">
+        <form className="w-[280px] sm:w-[350px] h-max pb-[20px] dark:bg-stone-900 bg-purple-500 rounded-md flex flex-col">
             <h2 className="text-[24px] w-[100%] rounded-md dark:bg-black bg-zinc-800 p-[5px] text-zinc-100">Register</h2>
 
             <label htmlFor="name" className='dark:text-stone-200 text-[19px] mt-[10px] mb-[5px] ml-[5px] font-[500]'>Name</label>
-            <input id='name' value={name} onChange={e=>handleChange("name",e)} name='name' placeholder='Full name...' type="text" className="indent-[5px] outline-none placeholder:text-zinc-500 w-[340px] h-[30px] mx-auto rounded-md" />
+            <input id='name' value={name} onChange={e=>handleChange("name",e)} name='name' placeholder='Full name...' type="text" className="indent-[5px] outline-none placeholder:text-zinc-500 w-[270px] sm:w-[340px] h-[30px] mx-auto rounded-md" />
 
             <label htmlFor="email"  className='dark:text-stone-200 text-[19px] mt-[10px] mb-[5px] ml-[5px] font-[500]'>Email</label>
-            <input id='email' value={email} onChange={e=>handleChange("email",e)} name='email' placeholder='Email address...' type="email" className="indent-[5px] outline-none placeholder:text-zinc-500 w-[340px] h-[30px] mx-auto rounded-md" />
+            <input id='email' value={email} onChange={e=>handleChange("email",e)} name='email' placeholder='Email address...' type="email" className="indent-[5px] outline-none placeholder:text-zinc-500 w-[270px] sm:w-[340px] h-[30px] mx-auto rounded-md" />
 
             <label htmlFor="password"  className='dark:text-stone-200 text-[19px] mt-[10px] mb-[5px] ml-[5px] font-[500]'>Password</label>
-            <input id='password' value={password} onChange={e=>handleChange("password",e)} name='password' placeholder='Password...' type="password" className="indent-[5px] outline-none placeholder:text-zinc-500 w-[340px] h-[30px] mx-auto rounded-md" />
+            <input id='password' value={password} onChange={e=>handleChange("password",e)} name='password' placeholder='Password...' type="password" className="indent-[5px] outline-none placeholder:text-zinc-500 w-[270px] sm:w-[340px] h-[30px] mx-auto rounded-md" />
 
             <label htmlFor="cPassword" className='dark:text-stone-200 text-[19px] mt-[10px] mb-[5px] ml-[5px] font-[500]'>Confirm Password</label>
-            <input id='confirmPassword' value={cPass} name='cPassword' onChange={e=>handleChange("cPass",e)} placeholder='Confirm Password...' type="password" className="indent-[5px] outline-none placeholder:text-zinc-500 w-[340px] h-[30px] mx-auto rounded-md" />
+            <input id='confirmPassword' value={cPass} name='cPassword' onChange={e=>handleChange("cPass",e)} placeholder='Confirm Password...' type="password" className="indent-[5px] outline-none placeholder:text-zinc-500 w-[270px] sm:w-[340px] h-[30px] mx-auto rounded-md" />
             
             <p className="ml-[5px] mt-[10px] dark:text-stone-200">Already have an account? <span className='dark:text-indigo-400 text-indigo-900 font-[600] cursor-pointer' onClick={e=>changeForm("login")}>Login.</span></p>
 
-            <button className='w-[340px] h-[40px] mt-[10px] mx-auto bg-blue-700 rounded-md text-zinc-100 text-[22px] flex items-center justify-center' type="submit" onClick={register}>{isLoading ? (<AiOutlineLoading3Quarters className='animate-spin' />) : ("Register")}</button>
+            <button className='w-[270px] sm:w-[340px] h-[40px] mt-[10px] mx-auto bg-blue-700 rounded-md text-zinc-100 text-[22px] flex items-center justify-center' type="submit" onClick={register}>{isLoading ? (<AiOutlineLoading3Quarters className='animate-spin' />) : ("Register")}</button>
         </form>
     )
 
     const loginForm = () => (
-        <form className="w-[350px] h-max pb-[20px] dark:bg-stone-900 bg-purple-500 rounded-md flex flex-col">
+        <form className="w-[280px] sm:w-[350px] h-max pb-[20px] dark:bg-stone-900 bg-purple-500 rounded-md flex flex-col">
             <h2 className="text-[24px] w-[100%] rounded-md dark:bg-black bg-zinc-800 p-[5px] text-zinc-100">Login</h2>
 
             <label htmlFor="email"  className='dark:text-stone-200 text-[19px] mt-[10px] mb-[5px] ml-[5px] font-[500]'>Email</label>
-            <input id='lEmail' value={email} onChange={e=>handleChange("email",e)} name='email' placeholder='Email address...' type="email" className="indent-[5px] outline-none placeholder:text-zinc-500 w-[340px] h-[30px] mx-auto rounded-md" />
+            <input id='lEmail' value={email} onChange={e=>handleChange("email",e)} name='email' placeholder='Email address...' type="email" className="indent-[5px] outline-none placeholder:text-zinc-500 w-[270px] sm:w-[340px] h-[30px] mx-auto rounded-md" />
 
             <label htmlFor="password"  className='dark:text-stone-200 text-[19px] mt-[10px] mb-[5px] ml-[5px] font-[500]'>Password</label>
-            <input id='lPassword' value={password} onChange={e=>handleChange("password",e)} name='password' placeholder='Password...' type="password" className="indent-[5px] outline-none placeholder:text-zinc-500 w-[340px] h-[30px] mx-auto rounded-md" />
+            <input id='lPassword' value={password} onChange={e=>handleChange("password",e)} name='password' placeholder='Password...' type="password" className="indent-[5px] outline-none placeholder:text-zinc-500 w-[270px] sm:w-[340px] h-[30px] mx-auto rounded-md" />
             
             <p className="ml-[5px] mt-[10px] dark:text-stone-200">Don't have an account? <span className='dark:text-indigo-400 text-indigo-900 font-[600] cursor-pointer' onClick={e=>changeForm("register")}>Register.</span></p>
 
-            <button className='w-[340px] h-[40px] mt-[10px] mx-auto bg-blue-700 rounded-md text-zinc-100 text-[22px] flex items-center justify-center' type="submit" onClick={login}>{
+            <button className='w-[270px] sm:w-[340px] h-[40px] mt-[10px] mx-auto bg-blue-700 rounded-md text-zinc-100 text-[22px] flex items-center justify-center' type="submit" onClick={login}>{
                 isLoading ? (<AiOutlineLoading3Quarters className='animate-spin' />) : ("Login")
             }</button>
         </form>

@@ -128,9 +128,9 @@ const Todo = ({todo}) => {
 
   return (
     <>
-    <div className={`w-[90%] relative mx-auto min-h-[40px] h-max mt-[10px] ${todo?.isCompleted ? ("dark:bg-stone-600 bg-purple-500") : ("dark:bg-stone-900 bg-purple-700")} rounded-md indent-[10px] text-white`}>
-        <div className='flex w-[100%] h-[100%] py-[5px] items-center justify-between'>
-            <h3 className={`${todo.isCompleted ? ("line-through") : ("")}`}>{todo.title}</h3>
+    <div className={`w-[90%] relative mx-auto min-h-[40px] h-max mt-[10px] ${todo?.isCompleted ? ("dark:bg-stone-600 bg-purple-500") : ("dark:bg-stone-900 bg-purple-700")} rounded-md text-white`}>
+        <div className='flex flex-col sm:flex-row gap-[10px] sm:gap-0 text-center sm:text-left w-[100%] h-[100%] py-[5px] items-center justify-between'>
+            <h3 className={`sm:ml-[10px] ${todo.isCompleted ? ("line-through") : ("")}`}>{todo.title}</h3>
             <div className='flex gap-[20px] mr-[10px]'>
                 <div onClick={e=>setIsExpanded(!isExpanded)} className=' flex items-center justify-center w-[30px] h-[30px] rounded-full bg-white'>
                     <MdExpandMore className='text-[36px] cursor-pointer text-black' />
@@ -171,9 +171,9 @@ const Todo = ({todo}) => {
         {
             isEditOpen && (
                 <div className='z-50 w-screen h-screen fixed top-0 left-0 flex items-center justify-center backdrop-blur-sm'>
-                    <div className='dark:bg-slate-800 shadow-xl rounded-md bg-purple-600 w-[500px] min-h-[300px] max-h-max pb-[20px]'>
+                    <div className='dark:bg-slate-800 shadow-xl rounded-md bg-purple-600 w-[300px] sm:w-[500px] min-h-[300px] max-h-max pb-[20px]'>
                         <div className='dark:bg-black bg-purple-900 rounded-t-md flex items-center justify-between h-[50px]'>
-                            <h2 className='text-[20px]'>Update</h2>
+                            <h2 className='text-[20px] indent-[10px]'>Update</h2>
                             <div onClick={e=>setIsEditOpen(false)} className=' cursor-pointer flex items-center justify-center w-[30px] h-[30px] rounded-full bg-rose-600 text-[20px] mr-[10px]'><AiOutlineClose /></div>
                         </div>
                         <form className='w-[100%] flex justify-center gap-[20px]'>
