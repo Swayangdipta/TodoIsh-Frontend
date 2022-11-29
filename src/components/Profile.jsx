@@ -44,7 +44,7 @@ const Profile = ({darkToggle,setDarkToggle=f=>f}) => {
                             <h3 className='text-[20px]'>{user.email}</h3>
                         </div>  
                     </div>
-                    <img className='w-[150px] mt-[20px]' src={`https://avatars.dicebear.com/api/bottts/${user.name.split(" ")[0]}.svg`} alt="" />                
+                    <img className='w-[80px] sm:w-[150px] mt-[20px]' src={`https://avatars.dicebear.com/api/bottts/${user.name.split(" ")[0]}.svg`} alt="" />                
                 </div>
 
                 <button disabled onClick={e=>{
